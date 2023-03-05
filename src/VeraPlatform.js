@@ -149,7 +149,8 @@ module.exports = class VeraPlatform {
               that.log.info(`Received Device Data | ${resp.devices.length} device${resp.devices.length !== 1 ? 's' : ''}`);
 
               // TODO: remove debugging/developement use of slice ----------- vvvvv
-              const devicesData = that.veraDeviceTypes.pruneDevices(resp.devices).slice(0,1);
+              // Fix from: https://github.com/sc3141/homebridge-plugin-vera/issues/16
+              const devicesData = that.veraDeviceTypes.pruneDevices(resp.devices) // .slice(0,1);
 
               const toCreate = that.accessories.diffAdd(devicesData);
               const toUpdate = that.accessories.intersection(devicesData);
