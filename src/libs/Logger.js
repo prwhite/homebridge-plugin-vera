@@ -12,7 +12,7 @@ module.exports = class Logging {
         this.platform = platform;
         this.logConfig = config;
         this.homebridge = platform.homebridge;
-        this.logLevel = 'good';
+        this.logLevel = 'info';
         let pre = prefix;
         if (this.logConfig) {
             if (this.logConfig.debug === true) {
