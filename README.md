@@ -19,6 +19,18 @@ all my home automation devices from my AppleTV 4K.
 
 **_Update 2020-06-21_**: I'm in the final testing stages release 0-0-5. It improves the smoothness of dimming sliders by more efficient responses to change brightness.  It also adds control for color bulbs.
 
+**_Update 2024-02-03_**: Removed debug code that is in the main repo see here: [https://github.com/sc3141/homebridge-plugin-vera/issues/16](https://github.com/sc3141/homebridge-plugin-vera/issues/16). Also added some protection for an exception in the client that occurred when no connection could be made.
+
+FYI: Example commands for installing a custom version from GitHub:
+```
+export PATH=$PATH:/opt/homebridge/bin
+sudo systemctl stop homebridge
+cd /var/lib/homebridge
+npm uninstall homebridge-plugin-vera   # if stock/other version already installed
+npm install git+https://github.com/prwhite/homebridge-plugin-vera.git#master
+sudo systemctl start homebridge
+```
+
 ## Home App Screenshots of Served Devices
 
 <img width="20%" src="https://github.com/sc3141/homebridge-plugin-vera/blob/readme-assets/home_screen.png?raw=true"></img>
@@ -127,4 +139,3 @@ I would like to acknowledge, in addition to @tonesto7, those whom he found helpf
      - <u>level</u><small style="color: #f92672; font-weight: 600;"><i> Optional</i></small> | <small style="color: green; font-weight: 600;"><i>Default: `good`</i></small><br>
      Defines the log entry levels that are written to the file. `good`(recommended) is the default which will write all necessary entries.
    </p>
-

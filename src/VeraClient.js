@@ -99,7 +99,11 @@ module.exports = class VeraClient {
         })
         .then((body) => {
           that.log.debug(`getStateVariable response: deviceid (${deviceid}) | stateVar (${serviceId}:${variableName}) | `, body);
-          callback(null, convert ? convert(body) : body);
+          if (callback) {
+            callback(null, convert ? convert(body) : body);
+          } else {
+            that.log.error(`getStateVariable: callback is undefined`);
+          }
           resolve(body);
         });
     });
@@ -137,7 +141,11 @@ module.exports = class VeraClient {
         })
         .then((body) => {
           that.log.debug(`sendAction response: deviceid (${deviceid}) | action (${serviceId}:${actionName}) | `, body);
-          callback(undefined);
+          if (callback) {
+            callback(undefined);
+          } else {
+            that.log.error(`sendAction: callback is undefined`);
+          }
           resolve(body);
         });
     });
