@@ -101,6 +101,7 @@ module.exports = class VeraClient {
           that.log.debug(`getStateVariable response: deviceid (${deviceid}) | stateVar (${serviceId}:${variableName}) | `, body);
           if (callback) {
             callback(null, convert ? convert(body) : body);
+            callback = undefined;
           } else {
             that.log.error(`getStateVariable: callback is undefined`);
           }
@@ -143,6 +144,7 @@ module.exports = class VeraClient {
           that.log.debug(`sendAction response: deviceid (${deviceid}) | action (${serviceId}:${actionName}) | `, body);
           if (callback) {
             callback(undefined);
+            callback = undefined;
           } else {
             that.log.error(`sendAction: callback is undefined`);
           }
