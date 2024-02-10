@@ -203,7 +203,7 @@ module.exports = class DeviceTypes {
 
     return accessory;
   }
-  
+
   hasStateVar(serviceId, name) {
     return this.states.find(state => serviceId === state.service && name === state.variable);
   }
@@ -259,7 +259,15 @@ module.exports = class DeviceTypes {
         devData.deviceid,
         connectSpec.veraServiceId,
         connectSpec.stateVarDef.name,
-        convert);
+        convert)
+      .catch(err => {
+          this.log.error(`getStateVariable error: deviceid (${devData.deviceid}) | stateVar (${connectSpec.stateVarDef.name}) | `, err.message);
+          if (callback !== undefined) {
+            callback(err);
+          } else {
+            console.error('getStateVariable callback is undefined');
+          }
+        })
     };
   }
 
@@ -280,7 +288,15 @@ module.exports = class DeviceTypes {
         connectSpec.action,
         _.get(connectSpec.actionDef, 'in.0.name'),
         value,
-        convert);
+        convert)
+      .catch(err => {
+          this.log.error(`sendAction error: deviceid (${devData.deviceid}) | action (${connectSpec.action}) | `, err.message);
+          if (callback !== undefined) {
+            callback(err);
+          } else {
+            console.error('sendAction callback is undefined');
+          }
+        });
     }
   }
 
