@@ -262,11 +262,6 @@ module.exports = class DeviceTypes {
         convert)
       .catch(err => {
           this.log.error(`getStateVariable error: deviceid (${devData.deviceid}) | stateVar (${connectSpec.stateVarDef.name}) | `, err.message);
-          if (callback !== undefined) {
-            callback(err);
-          } else {
-            console.error('getStateVariable callback is undefined');
-          }
         })
     };
   }
@@ -291,11 +286,6 @@ module.exports = class DeviceTypes {
         convert)
       .catch(err => {
           this.log.error(`sendAction error: deviceid (${devData.deviceid}) | action (${connectSpec.action}) | `, err.message);
-          if (callback !== undefined) {
-            callback(err);
-          } else {
-            console.error('sendAction callback is undefined');
-          }
         });
     }
   }
